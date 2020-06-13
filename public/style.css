@@ -1,0 +1,115 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.header-search-wrapper {
+    margin: 10px auto 0 240px;
+    top: 2px;
+    width: 50%;
+    height: 40px;
+    display: inline-block;
+    position: relative
+}
+
+.header-search-wrapper i {
+    position: absolute;
+    font-size: 24px;
+    top: 6px;
+    left: 18px;
+    line-height: 32px !important;
+    -webkit-transition: color 200ms ease;
+    transition: color 200ms ease
+}
+
+input.header-search-input {
+    display: block;
+    padding: 8px 8px 8px 72px;
+    width: 100% !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    height: 24px;
+    -webkit-transition: all 200ms ease;
+    transition: all 200ms ease;
+    border: none;
+    font-size: 16px;
+    appearance: textfield;
+    font-weight: 400;
+    outline: none;
+    border-radius: 3px !important;
+    color: #fff;
+}
+
+input.header-search-input:hover {
+    background: rgba(255, 255, 255, 0.5) !important;
+}
+
+input.header-search-input:focus {
+    background: rgba(255, 255, 255, 1) !important;
+}
+
+.header-search-wrapper:focus i {
+    color: #444
+}
+
+.header-search-wrapper:focus-within i {
+    color: #444
+}
+
+.header-search-wrapper:active i {
+    color: #444
+}
+
+.header-search-input:focus::placeholder {
+    color: #333;
+    font-size: 16px;
+    font-weight: 400
+}
+
+.header-search-input::placeholder {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400
+}
+
+/* .input-field label {
+    color: #ffa000 !important;
+} */
+
+.input-field input:focus+label {
+    color: #ffa000 !important;
+}
+
+.input-field input:focus {
+    border-bottom: 1px solid #37474f !important;
+    box-shadow: 0 1px 0 0 #37474f !important;
+}
+
+.input-field .prefix.active {
+    color: #ffa000 !important;
+}
+
+.input-field textarea:focus+label {
+    color: #ffa000 !important;
+}
+
+.input-field textarea:focus {
+    border-bottom: 1px solid #37474f !important;
+    box-shadow: 0 1px 0 0 #37474f !important;
+}
+
+.alert {
+    position: relative;
+}
+
+.alert-close {
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    color: inherit;
+    margin-top: -18px;
+}

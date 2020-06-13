@@ -1,0 +1,31 @@
+<%- include ('./partials/header') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col s6 offset-s3">
+      <div class="card">
+        <form action="/user/login" method="POST">
+          <div class="card-content">
+            <span class="card-title">Sign In</span>
+            <p>Don't have an account? <a href="/user/register">Sign Up</a><br><br></p>
+            <div class="center-align"><i class="large material-icons center">account_box</i></div>
+            <div class="input-field">
+              <i class="material-icons prefix">mail_outline</i>
+              <input id="login-email" name="email" type="email" class="validate" placeholder="Enter Email" required>
+            </div>
+            <div class="input-field">
+              <i class="material-icons prefix">lock_outline</i>
+              <input id="login-password" name="password" type="password" class="validate" placeholder="Create Password"
+                required>
+            </div>
+          </div>
+          <div class="card-action center">
+            <button id="login-btn" type="submit" class="btn waves-effect waves-light amber darken-2">Sign In</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include ('./partials/footer') %>

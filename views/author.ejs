@@ -1,0 +1,118 @@
+<%- include('./partials/header') %>
+
+<div class="container">
+  <div class="row">
+    <div class="card-panel center blue-grey darken-3 white-text">
+      <span class="flow-text center"><strong><%= author.username %></strong> - PROFILE</span>
+    </div>
+    <div class="col s4">
+      <div class="card blue-grey darken-2">
+        <div class="card-content white-text">
+          <span class="card-title flow-text truncate"><%= author.username %></span>
+          <p><%= author.about %></p>
+        </div>
+        <% if (currentUser && currentUser.author.id.equals(author._id)) { %>
+        <div class="card-action">
+          <button class="btn modal-trigger waves-effect waves-light amber darken-2" data-target="about-edit">
+            Edit<i class="material-icons right">edit</i>
+          </button>
+          <button class="btn modal-trigger waves-effect waves-light amber darken-2 right" data-target="story-new">
+            New Story<i class="material-icons right">add_to_photos</i>
+          </button>
+        </div>
+        <div id="about-edit" class="modal">
+          <div class="modal-content">
+            <h4 class="center">TELL ABOUT YOU</h4><br>
+            <form action="/author/<%= currentUser.author.id %>?_method=PUT" method="POST">
+              <div class="input-field">
+                <textarea id="about-text" name="about" class="materialize-textarea"
+                  required><%= author.about %></textarea>
+                <label class="active" for="about-text">About</label>
+              </div>
+              <button type="submit" class="btn waves-effect waves-light amber darken-2">Save</button>
+            </form>
+          </div>
+        </div>
+        <div id="story-new" class="modal">
+          <div class="modal-content">
+            <h4 class="center">NEW STORY</h4><br>
+            <form action="/story" method="POST">
+              <div class="input-field">
+                <input id="story-title" name="title" type="text" required></input>
+                <label class="active" for="story-title">Title</label>
+              </div>
+              <div class="input-field">
+                <textarea id="story-description" name="description" class="materialize-textarea" required></textarea>
+                <label class="active" for="story-description">Description</label>
+              </div>
+              <button type="submit" class="btn waves-effect waves-light amber darken-2">Save</button>
+            </form>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+    <div class="col s8">
+      <% if (stories) { %>
+      <% if (stories.length == 0) { %>
+      <div class="card blue-grey darken-2">
+        <div class="card-content white-text">
+          <span class="card-title center"><b>NO STORIES</b></span>
+        </div>
+      </div>
+      <% } else { %>
+      <% stories.forEach(story => { %>
+      <div class="card blue-grey darken-2">
+        <div class="card-content white-text">
+          <span class="card-title"><%= story.title %></span>
+          <p><%= story.description %></p>
+        </div>
+        <div class="card-action">
+          <div class="row" style="margin-bottom: 0px;">
+            <% if (currentUser && currentUser.author.id.equals(author._id)) { %>
+            <div class="col">
+              <form action="/story/<%= story._id %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn waves-effect waves-light amber darken-2">
+                  Delete<i class="material-icons right">delete</i>
+                </button>
+              </form>
+            </div>
+            <div class="col">
+              <button class="btn waves-effect waves-light amber darken-2 modal-trigger" data-target="story-edit">
+                Edit<i class="material-icons right">edit</i>
+              </button>
+            </div>
+            <div id="story-edit" class="modal">
+              <div class="modal-content">
+                <h4 class="center">EDIT STORY</h4><br>
+                <form action="/story/<%= story._id %>?_method=PUT" method="POST">
+                  <div class="input-field">
+                    <input id="story-title" name="title" type="text" value="<%= story.title %>" required></input>
+                    <label class="active" for="story-title">Title</label>
+                  </div>
+                  <div class="input-field">
+                    <textarea id="story-description" name="description" class="materialize-textarea"
+                      required><%= story.description %></textarea>
+                    <label class="active" for="story-description">Description</label>
+                  </div>
+                  <button type="submit" class="btn waves-effect waves-light amber darken-2">Save</button>
+                </form>
+              </div>
+            </div>
+            <% } %>
+            <div class="col right">
+              <a href="/story/<%= story._id %>" class="btn waves-effect waves-light amber darken-2">
+                Read<i class="material-icons right">send</i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+      <% } %>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<%- include('./partials/footer') %>
