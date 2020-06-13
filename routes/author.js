@@ -3,8 +3,8 @@ const router  = express.Router();
 
 const { ensureAuthenticated } = require('../config/auth');
 
-const Author = require('../models/author');
-const Story  = require('../models/story');
+const Author = require('../models/Author');
+const Story  = require('../models/Story');
 
 router.get('/:author_id', (req, res) => {
   Author

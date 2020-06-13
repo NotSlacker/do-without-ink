@@ -7,7 +7,7 @@ const flash = require('connect-flash');
 const methodOverride = require('method-override');
 require('dotenv').config();
 
-const User = require('./models/user');
+const User = require('./models/User');
 
 const DB_URI = process.env.MONGODB_URI || process.env.MONGODB_LOCAL;
 const PORT = process.env.PORT || 3000;
@@ -18,7 +18,7 @@ mongoose
     useUnifiedTopology: true,
     useFindAndModify: false
   })
-  .then(() => console.log('MongoDB connected:',DB_URI))
+  .then(() => console.log('MongoDB connected:', DB_URI))
   .catch(err => console.error(err));
 
 const app = express();
