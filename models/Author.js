@@ -13,7 +13,7 @@ const authorSchema = new mongoose.Schema({
   },
   stories: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Story'
+    ref: 'story'
   }],
   created: {
     type: Date,

@@ -7,7 +7,7 @@ const flash          = require('connect-flash');
 const methodOverride = require('method-override');
                        require('dotenv').config();
 
-const User = require('./models/User');
+const User = require('./models/user');
 
 const DB_URI = process.env.MONGODB_URI || process.env.MONGODB_LOCAL;
 const PORT   = process.env.PORT        || 3000;
@@ -32,10 +32,10 @@ const chapterRoutes = require('./routes/chapter');
 const reviewRoutes  = require('./routes/review');
 
 // APP CONFIG
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('public'));
 app.use(methodOverride('_method'));
 
 // PASSPORT CONFIG
@@ -73,7 +73,7 @@ app.use((req, res, next) => {
 });
 
 // USE ROUTES
-app.use('/', indexRoutes);
+app.use(indexRoutes);
 app.use('/user', userRoutes);
 app.use('/author', authorRoutes);
 app.use('/author/:author_id/story', storyRoutes);

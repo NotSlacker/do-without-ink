@@ -5,8 +5,8 @@ const router   = express.Router();
 
 const { forwardAuthenticated } = require('../config/auth');
 
-const User   = require('../models/User');
-const Author = require('../models/Author');
+const User   = require('../models/user');
+const Author = require('../models/author');
 
 router.get('/login', forwardAuthenticated, (req, res) => {
   res.render('login');

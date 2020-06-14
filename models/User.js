@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
   author: {
     id: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Author'
+      ref: 'author'
     }
   },
   created: {

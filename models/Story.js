@@ -13,11 +13,11 @@ const storySchema = new mongoose.Schema({
   },
   chapters: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Chapter'
+    ref: 'chapter'
   }],
   reviews: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Review'
+    ref: 'review'
   }],
   created: {
     type: Date,
