@@ -17,12 +17,12 @@ router.get('/', (req, res) => {
               stories.forEach(story => {
                 collection.push({ author_id: author._id, story: story });
               });
+              res.render('home', { collection });
             }
           });
         });
       }
     });
-  res.render('home', { collection });
 });
 
 router.get('/search', (req, res) => {
