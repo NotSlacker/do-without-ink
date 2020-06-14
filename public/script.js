@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         data: stories.data,
         limit: 5,
         onAutocomplete: val => {
-          $('#search-form').attr('action', '/story/' + stories.links[val]);
+          $('#search-form').attr('action', '/author/' + stories.links[val].author_id + '/story/' + stories.links[val].story_id);
           $('#search-form').submit();
         }
       });

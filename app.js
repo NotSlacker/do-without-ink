@@ -1,16 +1,16 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const flash = require('connect-flash');
+const express        = require('express');
+const mongoose       = require('mongoose');
+const bcrypt         = require('bcryptjs');
+const passport       = require('passport');
+const LocalStrategy  = require('passport-local');
+const flash          = require('connect-flash');
 const methodOverride = require('method-override');
-require('dotenv').config();
+                       require('dotenv').config();
 
 const User = require('./models/User');
 
 const DB_URI = process.env.MONGODB_URI || process.env.MONGODB_LOCAL;
-const PORT = process.env.PORT || 3000;
+const PORT   = process.env.PORT        || 3000;
 
 mongoose
   .connect(DB_URI, {
@@ -24,10 +24,12 @@ mongoose
 const app = express();
 
 // REQUIRE ROUTES
-const indexRoutes = require('./routes/index');
-const userRoutes = require('./routes/user');
-const authorRoutes = require('./routes/author');
-const storyRoutes = require('./routes/story');
+const indexRoutes   = require('./routes/index');
+const userRoutes    = require('./routes/user');
+const authorRoutes  = require('./routes/author');
+const storyRoutes   = require('./routes/story');
+const chapterRoutes = require('./routes/chapter');
+const reviewRoutes  = require('./routes/review');
 
 // APP CONFIG
 app.set('view engine', 'ejs');
@@ -65,8 +67,8 @@ app.use(flash());
 // GLOBAL VARIABLES
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
-  res.locals.error = req.flash('error');
-  res.locals.success = req.flash('success');
+  res.locals.error       = req.flash('error');
+  res.locals.success     = req.flash('success');
   next();
 });
 
@@ -74,7 +76,9 @@ app.use((req, res, next) => {
 app.use('/', indexRoutes);
 app.use('/user', userRoutes);
 app.use('/author', authorRoutes);
-app.use('/story', storyRoutes);
+app.use('/author/:author_id/story', storyRoutes);
+app.use('/author/:author_id/story/:story_id/review', reviewRoutes);
+app.use('/author/:author_id/story/:story_id/chapter', chapterRoutes);
 
 app.listen(PORT, 'localhost', () => {
   console.log(`Server runs on port ${PORT}`);

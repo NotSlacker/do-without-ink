@@ -24,16 +24,18 @@ router.get('/:author_id', (req, res) => {
             }
           });
       }
-  });
+    });
 });
 
 router.put('/:author_id', ensureAuthenticated, (req, res) => {
   Author
     .findOneAndUpdate({ _id: req.params.author_id }, { about: req.body.about }, err => {
       if (err) console.log(err);
+      else {
+        req.flash('success', '"About" section was updated!');
+        res.redirect('/author/' + req.params.author_id);
+      }
     });
-  req.flash('success', '"About" section was updated!');
-  res.redirect('/author/' + req.params.author_id);
 });
 
 module.exports = router;
