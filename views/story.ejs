@@ -4,26 +4,32 @@
   <div class="row">
     <div class="card-panel blue-grey darken-3 white-text" style="padding: 5px 10px 15px 10px; margin: 0;">
       <h3 class="center"><%= story.title %></h3>
-      <h5 class="center">By <strong><%= story.author.username %></strong></h5>
+      <h5 class="center">By <strong><%= author.username %></strong></h5>
       <div class="container" style="padding: 10px 0 5px 0;">
         <hr>
         <p class="center"><%= story.description %></p>
       </div>
     </div>
   </div>
+
   <div class="row">
-    <a href="/" class="btn waves-effect waves-light amber darken-2">Home<i class="material-icons right">home</i></a>
-    <a href="/author/<%= story.author.id %>" class="btn waves-effect waves-light amber darken-2">Author
+    <a href="/" class="btn waves-effect waves-light amber darken-2">
+      Home<i class="material-icons right">home</i>
+    </a>
+
+    <a href="/author/<%= author._id %>" class="btn waves-effect waves-light amber darken-2">Author
       <i class="material-icons right">person</i>
     </a>
+
     <% if (currentUser) { %>
     <button class="btn waves-effect waves-light modal-trigger amber darken-2" data-target="review-new">
       Add Review<i class="material-icons right">create</i>
     </button>
+
     <div id="review-new" class="modal">
       <div class="modal-content">
         <h4 class="center">NEW REVIEW</h4><br>
-        <form action="/story/<%= story._id %>/review" method="POST">
+        <form action="/author/<%= author._id %>/story/<%= story._id %>/review" method="POST">
           <div class="input-field">
             <textarea id="review-text" name="text" class="materialize-textarea" required></textarea>
             <label class="active" for="review-text">Text</label>
@@ -33,14 +39,16 @@
       </div>
     </div>
     <% } %>
-    <% if(currentUser && currentUser.author.id.equals(story.author.id)){ %>
+
+    <% if(currentUser && currentUser.author.id.equals(author._id)){ %>
     <button class="btn waves-effect waves-light modal-trigger amber darken-2 right" data-target="chapter-new">
       New Chapter<i class="material-icons right">add</i>
     </button>
+
     <div id="chapter-new" class="modal">
       <div class="modal-content">
         <h4 class="center">NEW CHAPTER</h4><br>
-        <form action="/story/<%= story._id %>/chapter" method="POST">
+        <form action="/author/<%= author._id %>/story/<%= story._id %>/chapter" method="POST">
           <div class="input-field">
             <input id="chapter-title" name="title" type="text" required></input>
             <label class="active" for="chapter-title">Title</label>
@@ -55,6 +63,7 @@
     </div>
     <% } %>
   </div>
+
   <div class="row">
     <% if (chapters) { %>
     <% if (chapters.length == 0) { %>
@@ -66,14 +75,16 @@
     <% } else { %>
     <div class="collection">
       <% for (let i = 0; i < chapters.length; i++) { %>
-      <a href="/story/<%= story._id %>/chapter/<%= chapters[i]._id %>"
+      <a href="/author/<%= author._id %>/story/<%= story._id %>/chapter/<%= chapters[i]._id %>"
         class="collection-item blue-grey-text text-darken-2">Chapter <%= i + 1 %> |
-        <strong><%= chapters[i].title %></a></strong>
+        <strong><%= chapters[i].title %></strong>
+      </a>
       <% } %>
     </div>
     <% } %>
     <% } %>
   </div>
+  
   <% if (reviews) { %>
   <% if (reviews.length == 0) { %>
   <div class="card blue-grey darken-2">
@@ -85,7 +96,7 @@
   <% reviews.forEach(review => { %>
   <div class="card blue-grey darken-1">
     <div class="card-content white-text">
-      <span class="card-title">By <strong><%= review.author.username %></strong></span>
+      <span class="card-title">By <strong><%= review.username %></strong></span>
       <p><%= review.text %></p>
     </div>
   </div>

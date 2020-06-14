@@ -6,21 +6,25 @@
       <h4><strong><%= chapter.title %></strong></h4>
     </div>
   </div>
+
   <div class="row">
-    <a href="/story/<%= story_id %>" class="btn waves-effect waves-light amber darken-2">Back
+    <a href="/author/<%= author_id %>/story/<%= story_id %>" class="btn waves-effect waves-light amber darken-2">Back
       <i class="material-icons right">arrow_back</i>
     </a>
-    <a href="/author/<%= chapter.author.id %>" class="btn waves-effect waves-light amber darken-2">Author
+
+    <a href="/author/<%= author_id %>" class="btn waves-effect waves-light amber darken-2">Author
       <i class="material-icons right">person</i>
     </a>
-    <% if(currentUser && currentUser.author.id.equals(chapter.author.id)){ %>
+
+    <% if(currentUser && currentUser.author.id.equals(author_id)){ %>
     <button class="btn waves-effect waves-light modal-trigger amber darken-2 right" data-target="chapter-edit">
       Edit<i class="material-icons right">edit</i>
     </button>
+
     <div id="chapter-edit" class="modal">
       <div class="modal-content">
         <h4 class="center">EDIT CHAPTER</h4><br>
-        <form action="/story/<%= story_id %>/chapter/<%= chapter._id %>?_method=PUT" method="POST">
+        <form action="/author/<%= author_id %>/story/<%= story_id %>/chapter/<%= chapter._id %>?_method=PUT" method="POST">
           <div class="input-field">
             <input id="chapter-title" name="title" type="text" value="<%= chapter.title %>" required></input>
             <label class="active" for="chapter-title">Title</label>
@@ -35,6 +39,7 @@
     </div>
     <% } %>
   </div>
+  
   <div class="row">
     <div class="card-panel blue-grey-text text-darken-3">
       <span class="flow-text">
