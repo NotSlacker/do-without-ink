@@ -1,16 +1,10 @@
 const mongoose = require('mongoose');
 
 const reviewSchema = new mongoose.Schema({
-    author: {
-        id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Author'
-        },
-        username: {
-            type: String,
-            required: true,
-            trim: true
-        },
+    username: {
+        type: String,
+        required: true,
+        trim: true
     },
     text: {
         type: String,

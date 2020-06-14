@@ -11,12 +11,6 @@ const chapterSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  author: {
-    id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Author'
-    }
-  },
   created: {
     type: Date,
     default: Date.now()

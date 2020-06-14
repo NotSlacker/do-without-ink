@@ -11,17 +11,6 @@ const storySchema = new mongoose.Schema({
     trim: true,
     default: ''
   },
-  author: {
-    id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Author'
-    },
-    username: {
-      type: String,
-      required: true,
-      trim: true
-    }
-  },
   chapters: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Chapter'
