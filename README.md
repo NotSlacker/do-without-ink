@@ -1,36 +1,36 @@
-Проект
+Project
 ================
-Веб приложение, многопользовательская платформа для размещения ваших литературных произведений (историй, небольших рассказов и т.д.). Для поиска по уже имеющейся базе можно воспользоваться поисковой строкой в верхней части экрана. Ваши публикации доступны на странице вашего профиля после авторизации. Не забывайте оставлять отзывы к просмотренному материалу.
+Web application, multi-user platform for hosting your works (stories, light novels, etc.). To search the publications database, you can use the search bar at the top of the site. Your publications are available on your profile page after authorization. Do not forget to leave reviews for the works you read.
 
-Демо
+Demo
 ================
-Опробовать сайт можно по ссылке: [демоверсия](https://dowithoutink.glitch.me)
+You can try the site by the link: [demo](https://dowithoutink.glitch.me)
 
-Структура данных
+Database Structure
 ================
-В проекте используется NoSQL база данных - MongoDB. Для демоверсии использовались официальные облачные сервисы MongoDB Atlas для размещения базы данных.
+The project uses a NoSQL database - MongoDB. For the demo, MongoDB Atlas cloud services are used to host the database.
 
-В папке models находятся файлы с описанием моделей MongoDB, аналогично описаниям таблиц в SQL база данных. Документы-экземпляры каждой модели хранятся в отдельных коллекциях, подобно записям в таблицах.
+The models folder contains files describing MongoDB models, similar to tables in a SQL database. Instance documents for each model are stored in separate collections, just like records in tables.
 
-Схема отношений базы данных представлена на следующем рисунке:
+The database relationship diagram is shown in the following figure:
 
 ![dowithoutink-db](/dowithoutink-db.png)
 
-Локальный запуск
+Local
 ================
-Для того, чтобы заставить работать код на локальной машине необходимо прежде установить базу данных MongoDB, программную платформу Node.js (версии не ниже 12.0.0), а также менеджер пакетов NPM (устанавливается вместе с Node) для удобства.
+In order to get the code to work on the local machine, you must first install the MongoDB database, the Node.js software platform (version 12.0.0 or higher), and the NPM package manager (installed with Node) for convenience.
 
-Чтобы иметь возможность собрать проект необходимо установить вспомогательные модули, список которых указан в файле package.json. Для этого достаточно выполнить следующую команду, будучи в директории проекта:
+To be able to build the project, you need to install the auxiliary modules, the list of which is specified in the package.json file. To do this, just run the following command from the project directory:
 
     $ npm install
 
-Когда MongoDB установлена, следуя инструкции [по установке и запуску](https://docs.mongodb.com/manual/administration/install-community/), необходимо запустить программу базы данных mongod. По умолчанию база данных откроет порт 27017 для подключения по адресу 127.0.0.1. После создания база данных создайте файл .env и добавьтев него переменную MONGODB\_LOCAL по шаблону из файла .env\_sample. Осталось лишь запустить приложение из основной директории проекта. Для этого можно использовать одну из команд:
+When MongoDB is installed according to [install manuals] (https://docs.mongodb.com/manual/administration/install-community/), you need to run the mongod database program. By default, the database will open port 27017 to connect at 127.0.0.1. After creating the database, create a .env file and add the MONGODB\_LOCAL variable to it using the template from the .env\_sample file. Finally, to run the application, just call one of the following commands from the project directory:
 
     $ npm run dev
     $ npm run start
     
-Первая запускает приложение с помощью модуля nodemon, который будет автоматически перезапускать программу, если вы захотите изменить код.
-Вторая команда единожды запустит приложение.
+The first command starts the application using the nodemon module, which will automatically restart the program if you want to change the code.
+The second command will launch the application once.
 
-Увидеть запущенное приложение можно в браузере по адресу localhost:3000
-Порт 3000 установлен по умолчанию, чтобы задать собственный порт, добавьте в файл .env переменную PORT, задав ей значение желаемого порта.
+You can see the running application in the browser at localhost:3000
+Port 3000 is set by default; to set your own port, add the PORT variable to the .env file, setting it to the desired port.
