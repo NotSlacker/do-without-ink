@@ -24,7 +24,7 @@ To be able to build the project, you need to install the auxiliary modules, the 
 
     $ npm install
 
-When MongoDB is installed according to [install manuals] (https://docs.mongodb.com/manual/administration/install-community/), you need to run the mongod database program. By default, the database will open port 27017 to connect at 127.0.0.1. After creating the database, create a .env file and add the MONGODB\_LOCAL variable to it using the template from the .env\_sample file. Finally, to run the application, just call one of the following commands from the project directory:
+When MongoDB is installed according to [install manuals](https://docs.mongodb.com/manual/administration/install-community/), you need to run the mongod database program. By default, the database will open port 27017 to connect at 127.0.0.1. After creating the database, create a .env file and add the MONGODB\_LOCAL variable to it using the template from the .env\_sample file. Finally, to run the application, just call one of the following commands from the project directory:
 
     $ npm run dev
     $ npm run start
